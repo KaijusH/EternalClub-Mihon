@@ -55,3 +55,10 @@ jobs:
         working-directory: upstream
         run: ./gradlew :src:en:eternalclub:assembleDebug --no-daemon
         
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: EternalClub-debug-apk
+          path: upstream/src/en/eternalclub/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 14
