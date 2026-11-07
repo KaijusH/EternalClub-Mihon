@@ -47,18 +47,11 @@ jobs:
           path.write_text(content.replace(old, new, 1))
           PY
 
-      -       - name: Format Kotlin source
+      - name: Format Kotlin source
         working-directory: upstream
         run: ./gradlew :src:en:eternalclub:spotlessApply --no-daemon
 
       - name: Build standalone debug APK
         working-directory: upstream
         run: ./gradlew :src:en:eternalclub:assembleDebug --no-daemon
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: EternalClub-debug-apk
-          path: upstream/src/en/eternalclub/build/outputs/apk/debug/*.apk
-          if-no-files-found: error
-          retention-days: 14
+        
