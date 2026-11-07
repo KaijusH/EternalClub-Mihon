@@ -47,6 +47,10 @@ jobs:
           path.write_text(content.replace(old, new, 1))
           PY
 
+      -       - name: Format Kotlin source
+        working-directory: upstream
+        run: ./gradlew :src:en:eternalclub:spotlessApply --no-daemon
+
       - name: Build standalone debug APK
         working-directory: upstream
         run: ./gradlew :src:en:eternalclub:assembleDebug --no-daemon
